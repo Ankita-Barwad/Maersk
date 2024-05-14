@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shuffle and Sort Numbers - Interactive Game</title>
+  <meta name="description" content="A fun and interactive game where you can shuffle and sort a set of numbers. Test your sorting skills and challenge yourself!" />
+</head>
+
+<body>
+  <h5>
+    Shuffle and Sort
+  </h5>
+  <div class="box-body">
+    <div class="bigSc-right container smallSc-center">
+      <button onclick="shuffle()">Shuffle</button> <button onclick="sort()">Sort</button>
+    </div>
+    <div class="left container">
+      <div class="square">
+        <span class="bigSc-color"></span>
+        1
+      </div>
+      <div class="square">
+        <span class="bigSc-color"></span>
+        2
+      </div>
+      <div class="square">
+        <span class="bigSc-color"></span>
+        3
+      </div>
+      <div class="square">
+        <span class="bigSc-color"></span>
+        4
+      </div>
+      <div class="square">
+        <span class="bigSc-color"></span>
+        5
+      </div>
+      <div class="square">
+        <span class="bigSc-color"></span>
+        6
+      </div>
+      <div class="square">
+        <span class="bigSc-color"></span>
+        7
+      </div>
+      <div class="square">
+        <span class="bigSc-color"></span>
+        8
+      </div>
+      <div class="square">
+        <span class="bigSc-color"></span>
+        9
+      </div>
+    </div>
+    <p class="created-by">Created by Ankita Barwad</p>
+  </div>
+</body>
+<script>function shuffle() {
+    var squares = document.querySelectorAll('.left .square');
+    var parent = squares[0].parentNode;
+    var len = squares.length;
+    for (var i = len; i >= 0; i--) {
+      parent.appendChild(squares[Math.random() * i | 0]);
+    }
+  }
+
+  function sort() {
+    var squares = document.querySelectorAll('.left .square');
+    var parent = squares[0].parentNode;
+    var squaresArray = Array.prototype.slice.call(squares, 0);
+    squaresArray.sort(function (a, b) {
+      return parseInt(a.textContent.trim()) - parseInt(b.textContent.trim());
+    });
+    parent.innerHTML = "";
+    squaresArray.forEach(function (square) {
+      parent.appendChild(square);
+    });
+  }
+</script>
+<style>
+  .created-by {
+    font-family: sans-serif;
+    padding: 8px;
+    text-align: center;
+    font-style: italic;
+    font-weight: 600;
+    color: #2f454e;
+    font-size: 0.7rem;
+  }
+
+  .container {
+    display: flex;
+    flex-wrap: wrap
+  }
+
+  .box-body {
+    background: #efefef
+  }
+
+  .square {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    color: #fff;
+    font-size: 6em;
+    width: 30%;
+    height: 0;
+    font-family: monospace;
+    padding-top: 15%;
+    padding-bottom: 15%;
+    background-color: #ccc;
+    margin: 0
+  }
+
+  .container .square:first-child,
+  .container .square:nth-child(8) {
+    background: #6f98a8
+  }
+
+  .container .square:nth-child(2),
+  .container .square:nth-child(4) {
+    background: #2b8ead
+  }
+
+  .container .square:nth-child(6),
+  .container .square:nth-child(7) {
+    background: #bfbfbf
+  }
+
+  .container .square:nth-child(3),
+  .container .square:nth-child(5),
+  .container .square:nth-child(9) {
+    background: #2f454e
+  }
+
+  .smallSc-center {
+    justify-content: center
+  }
+
+  .bigSc-right {
+    float: right;
+    flex-direction: column;
+    width: 22%
+  }
+
+  button {
+    background: #72c3dc;
+    border: none;
+    box-shadow: 0 3px 0 -1px #2b8ead;
+    padding: 12px;
+    width: 70%;
+    border-radius: 8px;
+    font-size: 11px;
+    text-transform: uppercase;
+    margin: 10px;
+    color: #fff
+  }
+
+  h5 {
+    font-family: sans-serif;
+    text-align: center;
+    margin: 4px
+  }
+
+  @media screen and (max-width:960px) {
+    .square {
+      width: 99%;
+      height: 50px;
+      font-size: 2em;
+      color: #000;
+      font-family: monospace;
+      position: relative;
+      margin-bottom: 8px;
+      padding: 0
+    }
+
+    .box-body {
+      background: #fff
+    }
+
+    .square .bigSc-color {
+      width: 1%;
+      height: 100%;
+      position: absolute;
+      left: 0
+    }
+
+    .container .square {
+      background: #efefef !important
+    }
+
+    .container .square:first-child .bigSc-color,
+    .container .square:nth-child(8) .bigSc-color {
+      background: #6f98a8
+    }
+
+    .container .square:nth-child(2) .bigSc-color,
+    .container .square:nth-child(4) .bigSc-color {
+      background: #2b8ead
+    }
+
+    .container .square:nth-child(6) .bigSc-color,
+    .container .square:nth-child(7) .bigSc-color {
+      background: #bfbfbf
+    }
+
+    .container .square:nth-child(3) .bigSc-color,
+    .container .square:nth-child(5) .bigSc-color,
+    .container .square:nth-child(9) .bigSc-color {
+      background: #2f454e
+    }
+
+    .smallSc-center {
+      justify-content: end
+    }
+
+    .bigSc-right {
+      float: unset;
+      flex-direction: row;
+      justify-content: center;
+      width: 100%
+    }
+
+    button {
+      width: 20%
+    }
+
+    h5 {
+      font-family: sans-serif;
+      text-align: center;
+      margin: 4px;
+      background: #333;
+      font-weight: 400;
+      color: #fff;
+      padding: 8px
+    }
+  }
+</style>
+
+</html>
